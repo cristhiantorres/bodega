@@ -3,18 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use EllipseSynergie\ApiResponse\Contracts\Response;
 use App\Cliente;
 class ClienteController extends Controller
 {
 
-    protected $response;
+    // protected $response;
 
-    public function __construct(Response $response)
-    {
-        // $this->middleware('auth');
-        $this->response = $response;
-    }
+    // public function __construct(Response $response)
+    // {
+    //     // $this->middleware('auth');
+    //     $this->response = $response;
+    // }
 
     /**
      * Display a listing of the resource.
@@ -88,6 +87,9 @@ class ClienteController extends Controller
     public function indexAPI()
     {
         $clientes = Cliente::all();
+
+        $clientes = str_replace("[","",$clientes);
+        $clientes = str_replace("]","",$clientes);
 
         return response()->json($clientes);
     }
