@@ -88,9 +88,8 @@ class ClienteController extends Controller
     {
         $clientes = Cliente::all();
 
-        $clientes = str_replace("[","",$clientes);
-        $clientes = str_replace("]","",$clientes);
+        $good  = json_encode($clientes,JSON_FORCE_OBJECT);
 
-        return response()->json($clientes);
+        return $good;
     }
 }
