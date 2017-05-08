@@ -83,12 +83,32 @@ class ClienteController extends Controller
     }
 
 
-    /*API*/
+    /*APIRest*/
 
     public function indexAPI()
     {
-        $clientes = Cliente::all();
+        try {
+            $response = [
+               'clientes' => []
+            ];
 
-        return response()->json($clientes);
+            $statusCode = 200;
+            $clientes = Cliente::all();
+
+            foreach ($clientes as $cliente) {
+                $response['clientes'][] = [
+                    'id'        =>  $cliente->id,
+                    'nombre'    =>  $cliente->nombre,
+                    'apellido'  =>  $cliente->apellido,
+                    'doc'       =>  $cliente->doc,
+                    'telefono'  =>  $cliente->telefono,
+                    'correo'    =>  $cliente->correo
+                ];
+            }
+        } catch (Exception $e) {
+            $statusCode = 404;   
+        }finally{
+            return response()->json($response,$statusCode);
+        }
     }
 }
