@@ -7,7 +7,7 @@
         <h4 class="modal-title" id="myModalLabel">Editar | {{ $cliente->nombre ." ".$cliente->apellido }}</h4>
       </div>
       <div class="modal-body">
-        <form id="form-new" method="GET" action="{{ route('clientes.update',['cliente' => $cliente->id]) }}">
+        <form id="form-update" method="GET" action="{{ route('clientes.update',['cliente' => $cliente->id]) }}">
           {{ csrf_field() }}
           {{-- {{ method_field('patch') }} --}}
           <div class="form-group">
@@ -32,7 +32,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-        <button type="submit" class="btn btn-primary" form="form-new">Guardar</button>
+        <button type="submit" class="btn btn-primary" form="form-update">Guardar</button>
       </div>
     </div>
   </div>
