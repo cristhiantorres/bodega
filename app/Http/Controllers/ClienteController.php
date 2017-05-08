@@ -3,17 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use EllipseSynergie\ApiResponse\Contracts\Response;
+use Illuminate\Http\Response;
 use App\Cliente;
 class ClienteController extends Controller
 {
 
-    protected $response;
-
     public function __construct(Response $response)
     {
-        // $this->middleware('auth');
-        $this->response = $response;
+        $this->middleware('auth');
     }
 
     /**
@@ -88,27 +85,11 @@ class ClienteController extends Controller
     public function indexAPI()
     {
         try {
-            $response = [
-               'clientes' => []
-            ];
-
-            $statusCode = 200;
             $clientes = Cliente::all();
-
-            foreach ($clientes as $cliente) {
-                $response['clientes'][] = [
-                    'id'        =>  $cliente->id,
-                    'nombre'    =>  $cliente->nombre,
-                    'apellido'  =>  $cliente->apellido,
-                    'doc'       =>  $cliente->doc,
-                    'telefono'  =>  $cliente->telefono,
-                    'correo'    =>  $cliente->correo
-                ];
-            }
         } catch (Exception $e) {
-            $statusCode = 404;   
+            $clientes = 404;   
         }finally{
-            return response()->json($response,$statusCode);
+            return response()->json($clientes);
         }
     }
 }
