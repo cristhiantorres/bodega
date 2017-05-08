@@ -7,9 +7,11 @@
         <h4 class="modal-title" id="myModalLabel">Editar | {{ $cliente->nombre ." ".$cliente->apellido }}</h4>
       </div>
       <div class="modal-body">
-        <form id="form-update" method="GET" action="{{ route('clientes.update',['cliente' => $cliente->id]) }}">
+        <form id="form-update-{{ $cliente->id }}" role="form" action="{{ url('clientes/'.$cliente->id.'/update') }}" method="POST">
+          
           {{ csrf_field() }}
-          {{-- {{ method_field('patch') }} --}}
+          {{ method_field('patch') }}
+
           <div class="form-group">
             <input type="text" name="nombre" placeholder="Nombre" class="form-control" value="{{ $cliente->nombre }}">
           </div>
@@ -26,13 +28,13 @@
             <input type="email" name="correo" placeholder="Correo" class="form-control" value="{{ $cliente->correo }}">
           </div>
           <div class="form-group">
-            <input type="direccion" name="direccion" placeholder="Direccion" class="form-control" value="{{ $cliente->direccion }}">
+            <input type="direccion" name="direccion" placeholder="Direccion" class="form-control" value="{{ $cliente->direccion}}">
           </div>
         </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-        <button type="submit" class="btn btn-primary" form="form-update">Guardar</button>
+        <button type="submit" class="btn btn-primary" form="form-update-{{ $cliente->id }}">Actualizar</button>
       </div>
     </div>
   </div>

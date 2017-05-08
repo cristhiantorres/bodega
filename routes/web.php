@@ -22,4 +22,4 @@ Route::get('/home', 'HomeController@index')->name('home');
 /*Clientes*/
 Route::get('clientes','ClienteController@index')->name('clientes');
 Route::post('clientes/new','ClienteController@store')->name('clientes.new');
-Route::get('clientes/{cliente}/update','ClienteController@update')->name('clientes.update');
+Route::patch('clientes/{cliente}/update','ClienteController@update');

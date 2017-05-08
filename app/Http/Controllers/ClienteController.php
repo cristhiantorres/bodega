@@ -61,10 +61,15 @@ class ClienteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,$cliente)
+    public function update(Request $request,Cliente $cliente)
     {
-        $cliente = Cliente::find($cliente);
-        $cliente->update($request->all());
+        $cliente->nombre    = $request->nombre;
+        $cliente->apellido  = $request->apellido;
+        $cliente->doc       = $request->doc;
+        $cliente->telefono  = $request->telefono;
+        $cliente->correo    = $request->correo;
+        $cliente->direccion = $request->direccion;
+        $cliente->update();
         return back();
     }
 
