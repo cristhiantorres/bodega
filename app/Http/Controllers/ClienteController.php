@@ -100,10 +100,10 @@ class ClienteController extends Controller
         }
     }
 
-    public function showAPI(Cliente $cliente)
+    public function showAPI($doc)
     {
         try {
-            
+            $cliente = Cliente::where('doc',$doc)->first();
             return response()->json($cliente,200);
 
         } catch (Exception $e) {
