@@ -79,9 +79,11 @@ class ClienteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Cliente $cliente)
     {
-        //
+        $cliente->delete();
+
+        return back();
     }
 
 
@@ -95,6 +97,18 @@ class ClienteController extends Controller
             $clientes = 404;   
         }finally{
             return response()->json($clientes);
+        }
+    }
+
+    public function showAPI(Cliente $cliente)
+    {
+        try {
+            
+            return response()->json($cliente,200);
+
+        } catch (Exception $e) {
+            
+            return response()->json($e, 404);
         }
     }
 }

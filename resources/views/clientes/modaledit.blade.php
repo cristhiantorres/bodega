@@ -7,7 +7,7 @@
         <h4 class="modal-title" id="myModalLabel">Editar | {{ $cliente->nombre ." ".$cliente->apellido }}</h4>
       </div>
       <div class="modal-body">
-        <form id="form-update-{{ $cliente->id }}" role="form" action="{{ url('clientes/'.$cliente->id.'/update') }}" method="POST">
+        <form id="form-update-{{ $cliente->id }}" role="form" action="{{ route('clientes.update',['cliente' => $cliente->id ]) }}" method="POST">
           
           {{ csrf_field() }}
           {{ method_field('patch') }}

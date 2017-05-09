@@ -30,3 +30,15 @@
 	@include('clientes.modalnew')
 </div>
 @endsection
+
+@section('footer')
+<script>
+	function deleteCliente(id) {
+		if (confirm('Desea eliminar el elemento?')) {
+			$('#delete-'+id).submit();
+		}else {
+			alert('No pasa nada');
+		}
+	}
+</script>
+@endsection
