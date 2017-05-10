@@ -9,14 +9,17 @@
 		<div class="panel-body">
 			<div class="col-md-6">
 				<div class="form-group">
-					<div class="input-group">
-						<input type="text" class="form-control" id="search" name="search" placeholder="Buscar..">
-						<span class="input-group-btn">
-							<button class="btn btn-default" type="button">
-								<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-							</button>
-						</span>
-					</div>
+					<form action="{{ route('clientes') }}" method="GET">
+
+						<div class="input-group">
+							<input type="text" class="form-control" id="search" name="search" placeholder="Buscar.." value="{{ request('search') }}">
+							<span class="input-group-btn">
+							<button class="btn btn-default" type="submit">
+									<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+								</button>
+							</span>
+						</div>
+					</form>
 				</div>
 			</div>
 			<div class="col-md-6">

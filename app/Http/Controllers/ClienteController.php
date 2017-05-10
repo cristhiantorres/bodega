@@ -18,11 +18,20 @@ class ClienteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $clientes = Cliente::all();
+        $search = trim($request->search);
 
-        return view('clientes.index',compact('clientes'));
+        if ($search) {
+
+            $clientes = Cliente::where('doc',$search)->get();
+
+        }else{
+
+            $clientes = Cliente::all();
+        }
+
+        return view('clientes.index',compact('clientes'))->withInput('search');
     }
 
     /**
@@ -107,8 +116,45 @@ class ClienteController extends Controller
             return response()->json($cliente,200);
 
         } catch (Exception $e) {
-            
+
             return response()->json($e, 404);
         }
     }
+
+    public function storeAPI(Request $request)
+    {
+
+        if ($request->isMethod("PUT")){
+
+        }else if($request->isMethod("POST")){
+
+            $status = 404;
+            $message = '';
+
+            $cliente = new Cliente;
+            
+            $cliente->nombre    = $request->nombre;
+            $cliente->apellido  = $request->apellido;
+            $cliente->doc       = $request->doc;
+            $cliente->telefono  = $request->telefono;
+            $cliente->correo    = $request->correo;
+            $cliente->direccion = $request->direccion;
+            
+            if ($cliente->save()) {
+                $message = "Te has registrado satisfactoriamente";
+                $status = 200;  
+                return response()->json($message,$status);
+            }else{
+                $message = "Error: Favor intente mas tarde";
+                $status = 404;
+                return response()->json($error,$status);
+            }
+
+
+        }
+        
+    }
+
+    
+
 }

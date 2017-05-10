@@ -15,4 +15,5 @@ use Illuminate\Http\Request;
 Route::group(['middleware' => 'auth:api'], function () {
 	Route::get('clientes','ClienteController@indexAPI');
 	Route::get('clientes/{doc}/show','ClienteController@showAPI');
+	Route::post('clientes','ClienteController@storeAPI');
 });
