@@ -10,7 +10,7 @@ class ClienteController extends Controller
 
     public function __construct(Response $response)
     {
-        $this->middleware('auth');
+        // $this->middleware('auth');
     }
 
     /**
