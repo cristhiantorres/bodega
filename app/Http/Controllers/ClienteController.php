@@ -127,30 +127,27 @@ class ClienteController extends Controller
         if ($request->isMethod("PUT")){
 
         }else if($request->isMethod("POST")){
-
-            $status = 404;
             $message = '';
 
             $cliente = new Cliente;
             
-            $cliente->nombre    = $request->nombre;
-            $cliente->apellido  = $request->apellido;
-            $cliente->doc       = $request->doc;
-            $cliente->telefono  = $request->telefono;
-            $cliente->correo    = $request->correo;
-            $cliente->direccion = $request->direccion;
-            
-            if ($cliente->save()) {
-                $message = "Te has registrado satisfactoriamente";
-                $status = 200;  
-                return response()->json($message,$status);
-            }else{
+            try {
+                $cliente->nombre    = $request->nombre;
+                $cliente->apellido  = $request->apellido;
+                $cliente->doc       = $request->doc;
+                $cliente->telefono  = $request->telefono;
+                $cliente->correo    = $request->correo;
+                $cliente->direccion = $request->direccion;
+
+                $cliente->save();
+                $respuesta[] = ["mensaje" => "Te has registrado satisfactoriamente"]; 
+                return response()->json($respuesta);
+
+            } catch (Exception $e) {
                 $message = "Error: Favor intente mas tarde";
-                $status = 404;
-                return response()->json($error,$status);
+                $respuesta[] = ["mensaje" => $message];
+                return response()->json($respuesta);
             }
-
-
         }
         
     }
