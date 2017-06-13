@@ -34,5 +34,5 @@
 	</div>
 @endsection
 @section('footer')
-	<script src='{{ mix('js/articulos.js') }}'></script>
+	<script src='{{ asset('js/articulos.js') }}'></script>
 @endsection
