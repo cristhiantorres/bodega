@@ -8,38 +8,16 @@ use App\Cliente;
 class ClienteController extends Controller
 {
 
-    public function __construct(Response $response)
+    public function __construct()
     {
-        // $this->middleware('auth');
+        $this->middleware('auth');
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request)
+    public function index()
     {
-        $search = trim($request->search);
-
-        if ($search) {
-
-            $clientes = Cliente::where('doc',$search)->get();
-
-        }else{
-
-            $clientes = Cliente::all();
-        }
-
-        return view('clientes.index',compact('clientes'))->withInput('search');
+        return view('clientes.index');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $this->validate($request,[
@@ -63,15 +41,10 @@ class ClienteController extends Controller
         return back();
 
     }
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(Request $request,Cliente $cliente)
     {
+
         $cliente->nombre    = $request->nombre;
         $cliente->apellido  = $request->apellido;
         $cliente->doc       = $request->doc;
@@ -79,15 +52,11 @@ class ClienteController extends Controller
         $cliente->correo    = $request->correo;
         $cliente->direccion = $request->direccion;
         $cliente->update();
-        return back();
+
+        return response()->json($cliente);
+
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Cliente $cliente)
     {
         $cliente->delete();
@@ -101,11 +70,18 @@ class ClienteController extends Controller
     public function indexAPI()
     {
         try {
-            $clientes = Cliente::all();
+
+            $clientes = Cliente::orderBy('updated_at','DESC')
+                                    ->simplePaginate(10);
+
         } catch (Exception $e) {
-            $clientes = 404;   
+
+            $clientes = 404;
+
         }finally{
+
             return response()->json($clientes);
+
         }
     }
 
@@ -130,7 +106,7 @@ class ClienteController extends Controller
             $message = '';
 
             $cliente = new Cliente;
-            
+
             try {
                 $cliente->nombre    = $request->nombre;
                 $cliente->apellido  = $request->apellido;
@@ -140,7 +116,7 @@ class ClienteController extends Controller
                 $cliente->direccion = $request->direccion;
 
                 $cliente->save();
-                $respuesta[] = ["mensaje" => "Te has registrado satisfactoriamente"]; 
+                $respuesta[] = ["mensaje" => "Te has registrado satisfactoriamente"];
                 return response()->json($respuesta);
 
             } catch (Exception $e) {
@@ -149,9 +125,18 @@ class ClienteController extends Controller
                 return response()->json($respuesta);
             }
         }
-        
+
     }
 
-    
+    public function delete($id)
+    {
+        $cliente = Cliente::find($id);
+
+        $cliente->delete();
+
+        return response()->json($cliente);
+    }
+
+
 
 }

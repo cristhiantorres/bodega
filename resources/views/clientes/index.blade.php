@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="container" id="clientes">
 	<div class="panel panel-default">
 		<div class="panel-heading">
 			<h3 class="text-center">Clientes</h3>
@@ -12,9 +12,9 @@
 					<form action="{{ route('clientes') }}" method="GET">
 
 						<div class="input-group">
-							<input type="text" class="form-control" id="search" name="search" placeholder="Buscar.." value="{{ request('search') }}">
+							<input type="text" class="form-control" v-model="searchString" id="search" name="search" placeholder="Buscar..">
 							<span class="input-group-btn">
-							<button class="btn btn-default" type="submit">
+								<button class="btn btn-default" type="submit">
 									<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
 								</button>
 							</span>
@@ -35,13 +35,5 @@
 @endsection
 
 @section('footer')
-<script>
-	function deleteCliente(id) {
-		if (confirm('Desea eliminar el elemento?')) {
-			$('#delete-'+id).submit();
-		}else {
-			alert('No pasa nada');
-		}
-	}
-</script>
+  <script src="{{ mix('js/clientes.js') }}"></script>
 @endsection

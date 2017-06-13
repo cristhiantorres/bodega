@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('auth.login');
+	return view('auth.login');
 });
 
 Auth::routes();
@@ -22,5 +22,18 @@ Route::get('/home', 'HomeController@index')->name('home');
 /*Clientes*/
 Route::get('clientes','ClienteController@index')->name('clientes');
 Route::post('clientes/new','ClienteController@store')->name('clientes.new');
-Route::patch('clientes/{cliente}/update','ClienteController@update')->name('clientes.update');
-Route::delete('clientes/{cliente}/delete','ClienteController@destroy')->name('clientes.delete');
+Route::patch('api/clientes/{cliente}/update','ClienteController@update');
+// Route::delete('clientes/{cliente}/delete','ClienteController@destroy')->name('clientes.delete');
+Route::get('api/clientes/{doc}/show','ClienteController@showAPI');
+Route::get('api/clientes/{id}/delete','ClienteController@delete');
+Route::post('api/clientes','ClienteController@storeAPI');
+Route::get('api/clientes','ClienteController@indexAPI');
+
+/* Articulos */
+Route::get('articulos','ArticuloController@index')->name('articulos');
+Route::get('api/articulos','ArticuloController@articulos');
+Route::post('api/articulos','ArticuloController@store');
+
+/* Tipos de Articulos */
+
+Route::get('api/tipos','TipoArticuloController@tipos');
