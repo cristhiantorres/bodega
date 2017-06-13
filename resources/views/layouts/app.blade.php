@@ -11,7 +11,7 @@
   <title>Bodega</title>
 
   <!-- Styles -->
-  <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+  <link href="{{ mix('/css/app.css') }}" rel="stylesheet">
   <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet">
   <link href="css/vue-multiselect.min.css" rel="stylesheet">
 
@@ -82,7 +82,7 @@
   @yield('content')
 
   <!-- Scripts -->
-  <script src="{{ mix('js/app.js') }}"></script>
+  <script src="{{ mix('/js/app.js') }}"></script>
   @yield('footer')
 </body>
 </html>
