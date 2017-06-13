@@ -1,13 +1,13 @@
 {
-  "/js/app.js": "/js/app.8fd299ab1435b6af0792.js",
-  "/css/app.css": "/css/app.dae5430b7e71930b33a671e6b925a4f4.css",
+  "/js/app.js": "/js/app.js",
+  "/css/app.css": "/css/app.css",
   "/js/axios.js": "/js/axios.js",
   "/js/jquery.min.js": "/js/jquery.min.js",
   "/js/vue.js": "/js/vue.js",
   "/js/vue-filter.min.js": "/js/vue-filter.min.js",
-  "/js/clientes.js": "/js/clientes.16b949ea2d34a74a9a0a.js",
+  "/js/clientes.js": "/js/clientes.js",
   "/js/bootstrap.js": "/js/bootstrap.js",
   "/js/vendor.js": "/js/vendor.js",
   "/js/jquery.js": "/js/jquery.js",
-  "/js/articulos.js": "/js/articulos.2d678cdc35db794429f4.js"
+  "/js/articulos.js": "/js/articulos.js"
 }
