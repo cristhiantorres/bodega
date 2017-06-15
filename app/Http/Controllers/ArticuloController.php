@@ -19,9 +19,8 @@ class ArticuloController extends Controller
 
     public function articulos()
     {
-        $articulos = Articulo::tipoArticulo()->get();
-        return $articulos;
-        // return response()->json($articulos);
+        $articulos = Articulo::all();
+        return response()->json($articulos);
     }
 
     /**

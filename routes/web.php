@@ -30,7 +30,6 @@ Route::get('api/clientes/{id}/delete','ClienteController@delete');
 
 /* Articulos */
 Route::get('articulos','ArticuloController@index')->name('articulos');
-Route::get('api/articulos','ArticuloController@articulos');
 Route::post('api/articulos','ArticuloController@store');
 
 /* Tipos de Articulos */

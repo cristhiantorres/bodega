@@ -13,7 +13,11 @@ use Illuminate\Http\Request;
 |
 */
 Route::group(['middleware' => 'auth:api'], function () {
+  // Clientes
   Route::get('clientes','ClienteController@indexAPI');
   Route::post('clientes','ClienteController@storeAPI');
   Route::get('clientes/{doc}/show','ClienteController@showAPI');
+
+  //Articulos
+  Route::get('articulos','ArticuloController@articulos');
 });
