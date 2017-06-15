@@ -18,6 +18,24 @@ class ClienteController extends Controller
         return view('clientes.index');
     }
 
+    public function clientes()
+    {
+        try {
+
+            $clientes = Cliente::orderBy('updated_at','DESC')
+                                    ->simplePaginate(10);
+
+        } catch (Exception $e) {
+
+            $clientes = 404;
+
+        }finally{
+
+            return response()->json($clientes);
+
+        }
+    }
+
     public function store(Request $request)
     {
         $this->validate($request,[

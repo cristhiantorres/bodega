@@ -53,7 +53,7 @@ const app = new Vue({
 			this.msg = 'Cargado...';
 
 
-			axios.get('api/clientes')
+			axios.get('clientes/all')
 
 
 			.then(response => {

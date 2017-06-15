@@ -19,8 +19,9 @@ class ArticuloController extends Controller
 
     public function articulos()
     {
-        $articulos = Articulo::simplePaginate(10);
-        return response()->json($articulos);
+        $articulos = Articulo::tipoArticulo()->get();
+        return $articulos;
+        // return response()->json($articulos);
     }
 
     /**

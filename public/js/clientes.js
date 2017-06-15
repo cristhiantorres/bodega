@@ -14349,7 +14349,7 @@ var app = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
 
 			this.msg = 'Cargado...';
 
-			__WEBPACK_IMPORTED_MODULE_1_axios___default.a.get('api/clientes').then(function (response) {
+			__WEBPACK_IMPORTED_MODULE_1_axios___default.a.get('clientes/all').then(function (response) {
 
 				_this.clientes = response.data.data;
 

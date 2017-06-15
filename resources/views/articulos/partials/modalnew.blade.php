@@ -12,7 +12,7 @@
           {{-- <input type="text" v-model="vlarticulo.tipo_articulo" placeholder="Tipo de articulo" class="form-control"> --}}
           <div>
             <label class="typo__label">Select with search</label>
-            <multiselect v-model="vlarticulo.tipo_articulo" :options="options" :custom-label="nameWithLang" placeholder="Selecciona una opcion" label="descripcion" track-by="descripcion"></multiselect>
+            <multiselect v-model="vlarticulo.tipo_articulo" :options="options" select-label="Presiona enter para seleccionar" :custom-label="nameWithLang" placeholder="Selecciona una opcion" label="descripcion" track-by="descripcion"></multiselect>
           </div>
         </div>
         <div class="form-group">
