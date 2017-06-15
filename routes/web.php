@@ -25,9 +25,7 @@ Route::get('clientes/all','ClienteController@clientes');
 Route::post('clientes/new','ClienteController@store')->name('clientes.new');
 Route::patch('api/clientes/{cliente}/update','ClienteController@update');
 // Route::delete('clientes/{cliente}/delete','ClienteController@destroy')->name('clientes.delete');
-Route::get('api/clientes/{doc}/show','ClienteController@showAPI');
 Route::get('api/clientes/{id}/delete','ClienteController@delete');
-Route::post('api/clientes','ClienteController@storeAPI');
 
 
 /* Articulos */
