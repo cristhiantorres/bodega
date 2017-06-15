@@ -89,8 +89,7 @@ class ClienteController extends Controller
     {
         try {
 
-            $clientes = Cliente::orderBy('updated_at','DESC')
-                                    ->simplePaginate(10);
+            $clientes = Cliente::orderBy('updated_at','DESC')->get();
 
         } catch (Exception $e) {
 
