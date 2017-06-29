@@ -18,24 +18,6 @@ class ClienteController extends Controller
         return view('clientes.index');
     }
 
-    public function clientes()
-    {
-        try {
-
-            $clientes = Cliente::orderBy('updated_at','DESC')
-                                    ->simplePaginate(10);
-
-        } catch (Exception $e) {
-
-            $clientes = 404;
-
-        }finally{
-
-            return response()->json($clientes);
-
-        }
-    }
-
     public function store(Request $request)
     {
         $this->validate($request,[
@@ -89,7 +71,7 @@ class ClienteController extends Controller
     {
         try {
 
-            $clientes = Cliente::orderBy('updated_at','DESC')->get();
+            $clientes = Cliente::orderBy('updated_at','DESC')->paginate(10);
 
         } catch (Exception $e) {
 
@@ -105,8 +87,9 @@ class ClienteController extends Controller
     public function showAPI($doc)
     {
         try {
+
             $cliente = Cliente::where('doc',$doc)->first();
-            return response()->json($cliente,200);
+           return response()->json($cliente,200);
 
         } catch (Exception $e) {
 

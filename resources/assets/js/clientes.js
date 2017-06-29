@@ -4,6 +4,10 @@ import axios from 'axios'
 
 import vuefilter from 'vue-filter'
 
+import Toasted from 'vue-toasted';
+
+Vue.use(Toasted)
+
 const app = new Vue({
 
 	el: '#clientes',
@@ -40,20 +44,17 @@ const app = new Vue({
 	},
 
 	mounted: function() {
-
 		this.listar()
-
 	},
 
 
 	methods:{
-
 		listar(){
 
 			this.msg = 'Cargado...';
 
 
-			axios.get('clientes/all')
+			axios.get('/api/clientes?api_token=TYtm7VTWLLKTsDbnRBoIExU4dH9UX4r0HN2y7KvyCGC9HR4QweL2nRyDsPjN')
 
 
 			.then(response => {
@@ -95,7 +96,7 @@ const app = new Vue({
 			// this.validate = true
 
 
-			axios.get(this.next)
+			axios.get(this.next+"&api_token=TYtm7VTWLLKTsDbnRBoIExU4dH9UX4r0HN2y7KvyCGC9HR4QweL2nRyDsPjN")
 
 
 			.then(response => {
@@ -131,7 +132,7 @@ const app = new Vue({
 			this.msg = 'Cargado...';
 
 
-			axios.get(this.previous)
+			axios.get(this.previous+"&api_token=TYtm7VTWLLKTsDbnRBoIExU4dH9UX4r0HN2y7KvyCGC9HR4QweL2nRyDsPjN")
 
 
 			.then(response => {
@@ -164,25 +165,15 @@ const app = new Vue({
 		},
 		removeCliente: function(index,id){
 
-
-			axios.get('api/clientes/'+id+'/delete')
-
+			axios.get('api/clientes/'+id+'/delete?api_token=TYtm7VTWLLKTsDbnRBoIExU4dH9UX4r0HN2y7KvyCGC9HR4QweL2nRyDsPjN')
 
 			.then(response => {
-
-
+				Vue.toasted.success('<strong>Registro '+ id +': ' +this.clientes[index].nombre+' '+this.clientes[index].apellido+' eliminado</strong>', {duration:5000});
 				this.clientes.splice(index, 1)
 
-
 			})
-
-
 			.catch(error => {
-
-
 				alert(error)
-
-
 			});
 		},
 		showModal(id,index){
@@ -199,7 +190,7 @@ const app = new Vue({
 		},
 		update(id,index){
 
-			axios.patch('api/clientes/'+id+'/update', this.vlcliente)
+			axios.patch('/api/clientes/'+id+'/update?api_token=TYtm7VTWLLKTsDbnRBoIExU4dH9UX4r0HN2y7KvyCGC9HR4QweL2nRyDsPjN', this.vlcliente)
 
 			.then(response => {
 
@@ -211,6 +202,8 @@ const app = new Vue({
 				this.clientes[index].direccion = response.data.direccion
 
 				$('#editModal-'+id).modal('hide');
+
+				Vue.toasted.success(this.clientes[index].nombre+ ' actualizado', {duration:5000});
 			})
 
 			.catch(error => {
@@ -219,5 +212,5 @@ const app = new Vue({
 
 			});
 		}
-	}
+	},
 });
