@@ -25,7 +25,6 @@ Route::post('clientes/new','ClienteController@store')->name('clientes.new');
 
 /* Articulos */
 Route::get('articulos','ArticuloController@index')->name('articulos');
-Route::post('api/articulos','ArticuloController@store');
 
 /* Tipos de Articulos */
 

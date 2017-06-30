@@ -19,7 +19,10 @@ class ArticuloController extends Controller
 
     public function articulos()
     {
-        $articulos = Articulo::all();
+        $articulos = Articulo::join('tipo_articulos','tipo_articulo','=','tipo_articulos.id')
+                              ->select('articulos.*','tipo_articulos.descripcion as tipo')
+                              ->paginate(10);
+        // $articulos = Articulo::find(2)->tipoArticulo;
         return response()->json($articulos);
     }
 
@@ -39,7 +42,12 @@ class ArticuloController extends Controller
         $articulo->creado_por = $user->name;
         $articulo->save();
 
-        return response()->json($articulo);
+        $final = Articulo::find($articulo->id)
+                              ->join('tipo_articulos','tipo_articulo','=','tipo_articulos.id')
+                              ->select('articulos.*','tipo_articulos.descripcion as tipo')
+                              ->paginate(10);
+
+        return response()->json($final);
     }
 
     /**

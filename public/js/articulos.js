@@ -14366,7 +14366,7 @@ var app = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
 
       this.msg = 'Cargado...';
 
-      __WEBPACK_IMPORTED_MODULE_1_axios___default.a.get('api/articulos').then(function (response) {
+      __WEBPACK_IMPORTED_MODULE_1_axios___default.a.get('api/articulos?api_token=TYtm7VTWLLKTsDbnRBoIExU4dH9UX4r0HN2y7KvyCGC9HR4QweL2nRyDsPjN').then(function (response) {
 
         _this2.articulos = response.data.data;
 
@@ -14378,7 +14378,7 @@ var app = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
 
         _this2.to = response.data.to;
 
-        if (_this2.clientes.length < 1) {
+        if (_this2.articulos.length < 1) {
 
           _this2.msg = 'No hay registros.';
         } else {
@@ -14398,15 +14398,15 @@ var app = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
       // this.validate = true
 
 
-      __WEBPACK_IMPORTED_MODULE_1_axios___default.a.get(this.next).then(function (response) {
+      __WEBPACK_IMPORTED_MODULE_1_axios___default.a.get(this.next + "&api_token=TYtm7VTWLLKTsDbnRBoIExU4dH9UX4r0HN2y7KvyCGC9HR4QweL2nRyDsPjN").then(function (response) {
 
-        _this3.clientes = response.data.data;
+        _this3.articulos = response.data.data;
 
         _this3.next = response.data.next_page_url;
 
         _this3.previous = response.data.prev_page_url;
 
-        if (_this3.clientes.length < 1) {
+        if (_this3.articulos.length < 1) {
 
           _this3.msg = 'No hay registros.';
         } else {
@@ -14423,15 +14423,15 @@ var app = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
 
       this.msg = 'Cargado...';
 
-      __WEBPACK_IMPORTED_MODULE_1_axios___default.a.get(this.previous).then(function (response) {
+      __WEBPACK_IMPORTED_MODULE_1_axios___default.a.get(this.previous + "&api_token=TYtm7VTWLLKTsDbnRBoIExU4dH9UX4r0HN2y7KvyCGC9HR4QweL2nRyDsPjN").then(function (response) {
 
-        _this4.clientes = response.data.data;
+        _this4.articulos = response.data.data;
 
         _this4.next = response.data.next_page_url;
 
         _this4.previous = response.data.prev_page_url;
 
-        if (_this4.clientes.length < 1) {
+        if (_this4.articulos.length < 1) {
 
           _this4.msg = 'No hay registros.';
         } else {
@@ -14447,9 +14447,9 @@ var app = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
     removeCliente: function removeCliente(index, id) {
       var _this5 = this;
 
-      __WEBPACK_IMPORTED_MODULE_1_axios___default.a.get('api/clientes/' + id + '/delete').then(function (response) {
+      __WEBPACK_IMPORTED_MODULE_1_axios___default.a.get('api/articulos/' + id + '/delete').then(function (response) {
 
-        _this5.clientes.splice(index, 1);
+        _this5.articulos.splice(index, 1);
       }).catch(function (error) {
 
         alert(error);
@@ -14459,14 +14459,14 @@ var app = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
     create: function create() {
       var _this6 = this;
 
-      __WEBPACK_IMPORTED_MODULE_1_axios___default.a.post('api/articulos', {
+      __WEBPACK_IMPORTED_MODULE_1_axios___default.a.post('api/articulos?api_token=TYtm7VTWLLKTsDbnRBoIExU4dH9UX4r0HN2y7KvyCGC9HR4QweL2nRyDsPjN', {
 
         tipo_articulo: this.vlarticulo.tipo_articulo.id,
         descripcion: this.vlarticulo.descripcion,
         precio: this.vlarticulo.precio
 
       }).then(function (response) {
-        _this6.articulos.push(response.data);
+        _this6.articulos = response.data.data;
         $('#newModal').modal('hide');
       }).catch(function (error) {
         console.log(error);
@@ -14474,26 +14474,26 @@ var app = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
     },
     showModal: function showModal(id, index) {
 
-      // this.vlcliente.nombre = this.clientes[index].nombre
-      // this.vlcliente.apellido = this.clientes[index].apellido;
-      // this.vlcliente.doc = this.clientes[index].doc;
-      // this.vlcliente.correo = this.clientes[index].correo;
-      // this.vlcliente.telefono = this.clientes[index].telefono;
-      // this.vlcliente.direccion = this.clientes[index].direccion;
-      // this.vlcliente.id = this.clientes[index].id;
+      // this.vlcliente.nombre = this.articulos[index].nombre
+      // this.vlcliente.apellido = this.articulos[index].apellido;
+      // this.vlcliente.doc = this.articulos[index].doc;
+      // this.vlcliente.correo = this.articulos[index].correo;
+      // this.vlcliente.telefono = this.articulos[index].telefono;
+      // this.vlcliente.direccion = this.articulos[index].direccion;
+      // this.vlcliente.id = this.articulos[index].id;
       //
       // $('#editModal-'+id).modal('show');
     },
     update: function update(id, index) {
 
-      __WEBPACK_IMPORTED_MODULE_1_axios___default.a.patch('api/clientes/' + id + '/update', this.vlcliente).then(function (response) {
+      __WEBPACK_IMPORTED_MODULE_1_axios___default.a.patch('api/articulos/' + id + '/update', this.vlcliente).then(function (response) {
 
-        // this.clientes[index].nombre = response.data.nombre
-        // this.clientes[index].apellido = response.data.apellido
-        // this.clientes[index].doc = response.data.doc
-        // this.clientes[index].correo = response.data.correo
-        // this.clientes[index].telefono = response.data.telefono
-        // this.clientes[index].direccion = response.data.direccion
+        // this.articulos[index].nombre = response.data.nombre
+        // this.articulos[index].apellido = response.data.apellido
+        // this.articulos[index].doc = response.data.doc
+        // this.articulos[index].correo = response.data.correo
+        // this.articulos[index].telefono = response.data.telefono
+        // this.articulos[index].direccion = response.data.direccion
         //
         // $('#editModal-'+id).modal('hide');
       }).catch(function (error) {

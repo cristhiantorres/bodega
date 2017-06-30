@@ -69,7 +69,7 @@ const app = new Vue({
       this.msg = 'Cargado...';
 
 
-      axios.get('api/articulos')
+      axios.get('api/articulos?api_token=TYtm7VTWLLKTsDbnRBoIExU4dH9UX4r0HN2y7KvyCGC9HR4QweL2nRyDsPjN')
 
 
       .then(response => {
@@ -84,7 +84,7 @@ const app = new Vue({
 
         this.to = response.data.to
 
-        if (this.clientes.length < 1)
+        if (this.articulos.length < 1)
         {
 
           this.msg = 'No hay registros.'
@@ -111,18 +111,18 @@ const app = new Vue({
       // this.validate = true
 
 
-      axios.get(this.next)
+      axios.get(this.next+"&api_token=TYtm7VTWLLKTsDbnRBoIExU4dH9UX4r0HN2y7KvyCGC9HR4QweL2nRyDsPjN")
 
 
       .then(response => {
 
-        this.clientes = response.data.data
+        this.articulos = response.data.data
 
         this.next = response.data.next_page_url
 
         this.previous = response.data.prev_page_url
 
-        if (this.clientes.length < 1)
+        if (this.articulos.length < 1)
         {
 
           this.msg = 'No hay registros.'
@@ -147,18 +147,18 @@ const app = new Vue({
       this.msg = 'Cargado...';
 
 
-      axios.get(this.previous)
+      axios.get(this.previous+"&api_token=TYtm7VTWLLKTsDbnRBoIExU4dH9UX4r0HN2y7KvyCGC9HR4QweL2nRyDsPjN")
 
 
       .then(response => {
 
-        this.clientes = response.data.data
+        this.articulos = response.data.data
 
         this.next = response.data.next_page_url
 
         this.previous = response.data.prev_page_url
 
-        if (this.clientes.length < 1)
+        if (this.articulos.length < 1)
         {
 
           this.msg = 'No hay registros.'
@@ -179,11 +179,11 @@ const app = new Vue({
       });
     },
     removeCliente: function(index,id){
-      axios.get('api/clientes/'+id+'/delete')
+      axios.get('api/articulos/'+id+'/delete')
 
       .then(response => {
 
-        this.clientes.splice(index, 1)
+        this.articulos.splice(index, 1)
 
       })
 
@@ -195,7 +195,7 @@ const app = new Vue({
     },
 
     create(){
-      axios.post('api/articulos',{
+      axios.post('api/articulos?api_token=TYtm7VTWLLKTsDbnRBoIExU4dH9UX4r0HN2y7KvyCGC9HR4QweL2nRyDsPjN',{
 
           tipo_articulo: this.vlarticulo.tipo_articulo.id,
           descripcion: this.vlarticulo.descripcion,
@@ -203,7 +203,7 @@ const app = new Vue({
 
       })
       .then(response => {
-          this.articulos.push(response.data)
+          this.articulos = response.data.data
           $('#newModal').modal('hide')
       })
       .catch(error => {
@@ -213,28 +213,28 @@ const app = new Vue({
 
     showModal(id,index){
 
-      // this.vlcliente.nombre = this.clientes[index].nombre
-      // this.vlcliente.apellido = this.clientes[index].apellido;
-      // this.vlcliente.doc = this.clientes[index].doc;
-      // this.vlcliente.correo = this.clientes[index].correo;
-      // this.vlcliente.telefono = this.clientes[index].telefono;
-      // this.vlcliente.direccion = this.clientes[index].direccion;
-      // this.vlcliente.id = this.clientes[index].id;
+      // this.vlcliente.nombre = this.articulos[index].nombre
+      // this.vlcliente.apellido = this.articulos[index].apellido;
+      // this.vlcliente.doc = this.articulos[index].doc;
+      // this.vlcliente.correo = this.articulos[index].correo;
+      // this.vlcliente.telefono = this.articulos[index].telefono;
+      // this.vlcliente.direccion = this.articulos[index].direccion;
+      // this.vlcliente.id = this.articulos[index].id;
       //
       // $('#editModal-'+id).modal('show');
     },
     update(id,index){
 
-      axios.patch('api/clientes/'+id+'/update', this.vlcliente)
+      axios.patch('api/articulos/'+id+'/update', this.vlcliente)
 
       .then(response => {
 
-        // this.clientes[index].nombre = response.data.nombre
-        // this.clientes[index].apellido = response.data.apellido
-        // this.clientes[index].doc = response.data.doc
-        // this.clientes[index].correo = response.data.correo
-        // this.clientes[index].telefono = response.data.telefono
-        // this.clientes[index].direccion = response.data.direccion
+        // this.articulos[index].nombre = response.data.nombre
+        // this.articulos[index].apellido = response.data.apellido
+        // this.articulos[index].doc = response.data.doc
+        // this.articulos[index].correo = response.data.correo
+        // this.articulos[index].telefono = response.data.telefono
+        // this.articulos[index].direccion = response.data.direccion
         //
         // $('#editModal-'+id).modal('hide');
       })

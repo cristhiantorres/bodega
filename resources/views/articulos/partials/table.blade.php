@@ -10,7 +10,7 @@
 	<tbody>
 		<tr v-for="(articulo,index) in articulos">
 			<td>@{{ articulo.id }} </td>
-			<td>@{{ articulo.tipo_articulo }}</td>
+			<td>@{{ articulo.tipo }}</td>
       <td>@{{ articulo.descripcion }}</td>
 			<td>@{{ articulo.precio }}</td>
 			{{-- <td>
