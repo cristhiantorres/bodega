@@ -94,4 +94,9 @@ class PedidosController extends Controller
     {
         //
     }
+
+    public function add(Request $request)
+    {
+        return response()->json($request->all());
+    }
 }

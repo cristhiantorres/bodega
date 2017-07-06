@@ -27,4 +27,5 @@ Route::group(['middleware' => 'auth:api'], function () {
   /* Pedidos */
   Route::get('pedidos','PedidosController@pedidos');
   Route::post('pedidos','PedidosController@store');
+  Route::post('pedidos/add','PedidosController@add');
 });
