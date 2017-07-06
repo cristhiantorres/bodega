@@ -6,6 +6,11 @@ import vuefilter from 'vue-filter'
 
 import Multiselect from 'vue-multiselect'
 
+import Toasted from 'vue-toasted'
+
+Vue.use(Toasted)
+
+
 const app = new Vue({
 
   el: '#articulos',
@@ -19,6 +24,7 @@ const app = new Vue({
     {
       id:'',
       tipo_articulo: '',
+      tipo: '',
       descripcion:'',
       precio:'',
       creado_por:'',
@@ -203,8 +209,17 @@ const app = new Vue({
 
       })
       .then(response => {
+
           this.articulos = response.data.data
+
+          this.vlarticulo.tipo_articulo = ""
+          this.vlarticulo.descripcion = ""
+          this.vlarticulo.precio = ""
+
           $('#newModal').modal('hide')
+
+          Vue.toasted.success('<strong>Articulo creado satisfactoriamente</strong>', {duration:5000});
+
       })
       .catch(error => {
         console.log(error);

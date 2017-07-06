@@ -14,6 +14,7 @@ mix.copy('node_modules/vue-multiselect/dist/vue-multiselect.min.css', 'public/cs
 mix.js('resources/assets/js/app.js','public/js/')
 	.js('resources/assets/js/clientes.js','public/js/')
 	.js('resources/assets/js/articulos.js','public/js/')
+	.js('resources/assets/js/pedidos.js','public/js/')
 	.sass('resources/assets/sass/app.scss', 'public/css');
 
 if (mix.config.inProduction) {

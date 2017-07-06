@@ -4,7 +4,7 @@ import axios from 'axios'
 
 import vuefilter from 'vue-filter'
 
-import Toasted from 'vue-toasted';
+import Toasted from 'vue-toasted'
 
 Vue.use(Toasted)
 

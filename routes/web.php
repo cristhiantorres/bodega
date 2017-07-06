@@ -27,5 +27,10 @@ Route::post('clientes/new','ClienteController@store')->name('clientes.new');
 Route::get('articulos','ArticuloController@index')->name('articulos');
 
 /* Tipos de Articulos */
-
 Route::get('api/tipos','TipoArticuloController@tipos');
+
+/* Pedidos */
+Route::get('pedidos', 'PedidosController@index')->name('pedidos');
+Route::get('pedidos/new', 'PedidosController@new')->name('pedidos.new');
+Route::get('pedidos/clientes', 'PedidosController@clientes');
+Route::get('pedidos/articulos', 'PedidosController@articulos');

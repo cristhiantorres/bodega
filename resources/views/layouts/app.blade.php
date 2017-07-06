@@ -13,7 +13,7 @@
   <!-- Styles -->
   <link href="{{ asset('/css/app.css') }}" rel="stylesheet">
   <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet">
-  <link href="css/vue-multiselect.min.css" rel="stylesheet">
+  <link href="{{ asset('css/vue-multiselect.min.css') }}" rel="stylesheet">
 
   <!-- Scripts -->
   <script>
@@ -53,6 +53,7 @@
               <!-- Authentication Links -->
               <li><a href="{{ route('clientes') }}">Clientes</a></li>
               <li><a href="{{ route('articulos') }}">Articulos</a></li>
+              <li><a href="{{ route('pedidos') }}">Pedidos</a></li>
               @if (Auth::guest())
                 <li><a href="{{ route('login') }}">Iniciar Sesion</a></li>
               @endif

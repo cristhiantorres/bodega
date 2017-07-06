@@ -23,4 +23,8 @@ Route::group(['middleware' => 'auth:api'], function () {
   //Articulos
   Route::get('articulos','ArticuloController@articulos');
   Route::post('articulos','ArticuloController@store');
+
+  /* Pedidos */
+  Route::get('pedidos','PedidosController@pedidos');
+  Route::post('pedidos','PedidosController@store');
 });
